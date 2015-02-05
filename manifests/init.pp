@@ -2,18 +2,7 @@ class munki_ssl {
 	if $::operatingsystem != 'Darwin' {
 			fail('The munki_ssl module is only supported on Darwin/OS X')
 	}
-
-	file { 'munkitools.pkg':
-		path	=>	"/Library/Puppet/munkitools2-latest.pkg",
-		ensure	=>	present,
-		source	=>	"puppet:///modules/munki_ssl/munkitools2-latest.pkg",
-	}
 	
-	package { 'munkitools2-latest':
-		ensure	=>	installed,
-		source	=>	"/Library/Puppet/munkitools2-latest.pkg"
-	}
-
 	file { ['/Library/Managed Installs', '/Library/Managed Installs/certs/' ]:
 		ensure	=>	directory,
 		owner	=>	'root',
